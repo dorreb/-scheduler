@@ -4,6 +4,7 @@ import classNames from "classnames";
 import "components/InterviewerListItem.scss";
 
 // interviewer object structure
+
 // const interviewer = {
 //   id: 1,
 //   name: "Sylvia Palmer",
