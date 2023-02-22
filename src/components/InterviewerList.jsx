@@ -15,8 +15,8 @@ import "components/InterviewerList.scss";
 
 // Do not forget key prop!!!
 // props Interviewers:array - an array of objects as seen above
-// props setInterviewer:function - a function that accepts an interviewer id. This function will simply be passed down to the <InterviewerListItem>
-// props interviewer:number - a number that represents the id of the currently selected interviewer
+// props onChange:function - a function that accepts an interviewer id. This function will simply be passed down to the <InterviewerListItem>
+// props value:number - a number that represents the id of the currently selected interviewer
 
 const InterviewerList = (props) => {
   const interviewerListItem = props.interviewers.map((interviewer) => {
@@ -25,8 +25,8 @@ const InterviewerList = (props) => {
         key={interviewer.id}
         name={interviewer.name}
         avatar={interviewer.avatar}
-        selected={interviewer.id === props.interviewer}
-        setInterviewer={() => props.setInterviewer(interviewer.id)}
+        selected={interviewer.id === props.value}
+        setInterviewer={() => props.onChange(interviewer.id)}
       />
     );
   });
