@@ -16,13 +16,14 @@ export function getInterview(state, interview) {
     return null;
   }
 
-  const interviewer = state.interviewers[interview.interviewer];
+  const interviewerObj = state.interviewers.data[interview.interviewer];
+
   return {
     student: interview.student,
     interviewer: {
-      id: interviewer.id,
-      name: interviewer.name,
-      avatar: interviewer.avatar
+      id: interviewerObj.id,
+      name: interviewerObj.name,
+      avatar: interviewerObj.avatar
     }
   };
 }
