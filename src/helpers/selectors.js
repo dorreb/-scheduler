@@ -28,6 +28,7 @@ export function getInterview(state, interview) {
   }
 
   const interviewerObj = state.interviewers.data[interview.interviewer];
+  // if i remove .data it passes all tests but then my localhost is blank because its not accessing the data...
 
   return {
     student: interview.student,
