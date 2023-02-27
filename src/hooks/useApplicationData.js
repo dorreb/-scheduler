@@ -27,6 +27,24 @@ export default function useApplicationData() {
 
   const bookInterview = (id, interview) => {
 
+    let days = state.days;
+
+    /*
+     Check to see if the appointment is being created from a previously null appointment
+     if so, updating days to decrease the number of spots available for that day
+     */
+    if (!state.appointments[id].interview) {
+      days = state.days.map((day) => {
+        const dayCopy = { ...day };
+        if (dayCopy.appointments.includes(id)) {
+          dayCopy.spots--;
+          return dayCopy;
+        } else {
+          return dayCopy;
+        }
+      });
+    }
+
     const appointment = { ...state.appointments[id], interview: { ...interview } };
     const appointments = { ...state.appointments, [id]: appointment };
 
@@ -35,7 +53,7 @@ export default function useApplicationData() {
     return axios.put(`/api/appointments/${id}`, appointment)
       .then(response => {
         setState({
-          ...state,
+          ...state, days,
           appointments
         });
       })
@@ -60,10 +78,23 @@ export default function useApplicationData() {
       [id]: nullAppointment
     };
 
+    /*
+     Updating days to increase the interview spots available on the day where the interview is being deleted
+   */
+    const days = state.days.map((day) => {
+      const dayCopy = { ...day };
+      if (dayCopy.appointments.includes(id)) {
+        dayCopy.spots++;
+        return dayCopy;
+      } else {
+        return dayCopy;
+      }
+    });
+
     return axios.delete(`api/appointments/${id}`)
       .then(response => {
         setState({
-          ...state,
+          ...state, days,
           appointments
         });
       });
