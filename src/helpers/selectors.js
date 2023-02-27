@@ -23,19 +23,33 @@ export function getInterviewersForDay(state, day) {
 /* ------------------------------------------------------------------------------- */
 
 
+// export function getInterview(state, interview) {
+//   if (!interview) {
+//     return null;
+//   }
+
+//   const interviewerObj = state.interviewers[interview.interviewer];
+
+//   return {
+//     student: interview.student,
+//     interviewer: {
+//       id: interviewerObj.id,
+//       name: interviewerObj.name,
+//       avatar: interviewerObj.avatar
+//     }
+//   };
+// }
+
 export function getInterview(state, interview) {
   if (!interview) {
     return null;
   }
 
-  const interviewerObj = state.interviewers[interview.interviewer];
-
-  return {
+  const interviewObj = {
     student: interview.student,
-    interviewer: {
-      id: interviewerObj.id,
-      name: interviewerObj.name,
-      avatar: interviewerObj.avatar
-    }
+    interviewer: state.interviewers[interview.interviewer]
   };
+
+  return interviewObj;
 }
+
