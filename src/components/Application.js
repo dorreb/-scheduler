@@ -8,6 +8,7 @@ import DayList from "./DayList";
 import Appointment from "components/Appointment";
 import { getAppointmentsForDay } from "helpers/selectors";
 import { getInterview } from "helpers/selectors";
+import { getInterviewersForDay } from "helpers/selectors";
 
 
 export default function Application(props) {
@@ -18,21 +19,40 @@ export default function Application(props) {
     interviewers: {}
   });
 
+  const bookInterview = (id, interview) => {
+
+    const appointment = { ...state.appointments[id], interview: { ...interview } };
+    const appointments = { ...state.appointments, [id]: appointment };
+
+    setState({ ...state, appointments });
+    return axios.put(`/api/appointments/${id}`, appointment)
+      .then(response => {
+        setState({
+          ...state,
+          appointments
+        });
+      })
+      .catch((err) => {
+        console.log("error:", err);
+      });
+  };
+
   const dailyAppointments = getAppointmentsForDay(state, state.day);
 
   const appointmentList = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
     return (
       <Appointment
-        // key={appointment.id}
-        // {...appointment}
         key={appointment.id}
         id={appointment.id}
         time={appointment.time}
         interview={interview}
+        interviewers={getInterviewersForDay(state, state.day)}
+        bookInterview={bookInterview}
       />
     );
   });
+
 
   const setDay = day => setState({ ...state, day });
 
@@ -43,12 +63,11 @@ export default function Application(props) {
       axios.get('/api/interviewers')
     ])
       .then((all) => {
-        setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2] }));
+        setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }));
       })
       .catch((err) => console.log(err));
 
   }, []);
-
 
 
   return (
@@ -80,3 +99,4 @@ export default function Application(props) {
     </main>
   );
 }
+
