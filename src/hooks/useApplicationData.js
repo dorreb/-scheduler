@@ -56,9 +56,6 @@ export default function useApplicationData() {
           ...state, days,
           appointments
         });
-      })
-      .catch((err) => {
-        console.log("error:", err);
       });
   };
 
