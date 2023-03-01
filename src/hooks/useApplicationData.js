@@ -64,11 +64,9 @@ export default function useApplicationData() {
 
     const nullAppointment = {
       ...state.appointments[id],
-      interview: { ...state.appointments[id].interview }
+      interview: null
     };
 
-    nullAppointment.interview.interviewer = null;
-    nullAppointment.interview.student = null;
 
     const appointments = {
       ...state.appointments,
@@ -89,11 +87,12 @@ export default function useApplicationData() {
     });
 
     return axios.delete(`api/appointments/${id}`)
-      .then(response => {
-        setState({
-          ...state, days,
+      .then(() => {
+        setState(prev => ({
+          ...prev, days,
           appointments
-        });
+        }));
+        console.log("State:", state);
       });
   }
 
