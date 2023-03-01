@@ -4,7 +4,7 @@ Interview Scheduler is a single page React application that allows users to book
 
 ## Take a Look at the Flow of Creating and Updating Appointments
 <p align="center">
-  <img src="https://raw.githubusercontent.com/dorreb/-scheduler/8b4b9350005f26654096c1626dca3ce6f1dc91cc/docs/scheduler.gif" alt="Booking and Updating Appointments" width="50%" style="max-width:100%;height:auto;">
+  <img src="https://raw.githubusercontent.com/dorreb/-scheduler/8b4b9350005f26654096c1626dca3ce6f1dc91cc/docs/scheduler.gif" alt="Booking and Updating Appointments" width="80%" style="max-width:100%;height:auto;">
 </p>
 
 ## Setup
