@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+/* allows a component to manage its own visual state. */
+
 const useVisualMode = (initialMode) => {
   const [mode, setMode] = useState(initialMode);
   const [history, setHistory] = useState([initialMode]);

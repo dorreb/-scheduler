@@ -1,3 +1,5 @@
+
+/*  returns an array of all the appointments for a specified day */
 export function getAppointmentsForDay(state, day) {
   const dayObj = state.days.find(d => d.name === day);
   if (!dayObj) {
@@ -10,6 +12,7 @@ export function getAppointmentsForDay(state, day) {
 
 /* ------------------------------------------------------------------------------- */
 
+/*  returns an array of all the interviewers for a specified day */
 export function getInterviewersForDay(state, day) {
   const dayObj = state.days.find(d => d.name === day);
   if (!dayObj || !dayObj.interviewers) {
@@ -22,24 +25,7 @@ export function getInterviewersForDay(state, day) {
 
 /* ------------------------------------------------------------------------------- */
 
-
-// export function getInterview(state, interview) {
-//   if (!interview) {
-//     return null;
-//   }
-
-//   const interviewerObj = state.interviewers[interview.interviewer];
-
-//   return {
-//     student: interview.student,
-//     interviewer: {
-//       id: interviewerObj.id,
-//       name: interviewerObj.name,
-//       avatar: interviewerObj.avatar
-//     }
-//   };
-// }
-
+/*  returns an object for an interview, containing the student name and an interviewer object containing the id, name and avatar */
 export function getInterview(state, interview) {
   if (!interview) {
     return null;

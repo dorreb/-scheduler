@@ -13,9 +13,6 @@ import Error from './Error';
 
 import useVisualMode from 'hooks/useVisualMode';
 
-
-
-
 const Appointment = (props) => {
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
@@ -76,30 +73,15 @@ const Appointment = (props) => {
     <article className="appointment" data-testid="appointment">
       <Header time={props.time} />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
-      {mode === SHOW && (
-        <Show
-          student={props.interview.student}
-          interviewer={props.interview.interviewer}
-          onDelete={confirmation}
-          onEdit={() => transition(EDIT)}
-        />
-      )}
-      {mode === CREATE && (
-        <Form
-          interviewers={props.interviewers}
-          onCancel={() => back()}
-          onSave={save}
-        />
-      )}
-      {mode === EDIT && <Form name={props.interview.student} interviewer={props.interview.interviewer.id} interviewers={props.interviewers} onCancel={() => transition(SHOW)} onSave={save} />}
+      {mode === SHOW && <Show student={props.interview.student} interviewer={props.interview.interviewer} onDelete={confirmation} onEdit={() => transition(EDIT)} />}
+      {mode === CREATE && <Form interviewers={props.interviewers} onCancel={() => back()} onSave={save} />}
+      {mode === EDIT && <Form student={props.interview.student} interviewer={props.interview.interviewer.id} interviewers={props.interviewers} onCancel={() => transition(SHOW)} onSave={save} />}
       {mode === SAVING && <Status message='Saving' />}
       {mode === DELETING && <Status message='Deleting' />}
       {mode === CONFIRM && <Confirm message='Are you sure you would like to delete?' onCancel={() => back()} onConfirm={cancel} />}
       {mode === ERROR_DELETE && <Error message='Error deleting appointment' onClose={() => back()} />}
       {mode === ERROR_SAVE && <Error message='Error saving appointment' onClose={() => back()} />}
       {mode === ERROR_MISSING_INFO && <Error message='You must select an interviewer' onClose={() => back()} />}
-
-
     </article>
   );
 };

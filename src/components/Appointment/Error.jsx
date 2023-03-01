@@ -1,8 +1,5 @@
 import React from "react";
 
-// props message:String eg. "Could not delete appointment."
-// props onClose:Function to be called when the user clicks the Close button
-
 const Error = (props) => {
   return (
     <main className="appointment__card appointment__card--error">

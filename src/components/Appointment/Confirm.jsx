@@ -2,10 +2,6 @@ import React from "react";
 
 import Button from "components/Button";
 
-// props message:String eg. "Delete the appointment?"
-// props onConfirm:Function to be called when the user clicks the Confirm button
-// props onCancel:Function to be called when the user clicks the Cancel button
-
 const Confirm = (props) => {
   return (
     <main className="appointment__card appointment__card--confirm">

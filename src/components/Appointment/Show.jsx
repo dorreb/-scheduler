@@ -1,18 +1,5 @@
 import React from "react";
 
-// interviewer object
-
-// const interviewer = {
-//   id: 1,
-//   name: "Sylvia Palmer",
-//   avatar: "https://i.imgur.com/LpaY82x.png"
-// };
-
-// props student:String eg. "Lydia Miller-Jones"
-// props interviewer:Object we can use the interview object that already exists in stories/index.js for this
-// props onEdit:Function to be called when the user clicks the Edit button
-// props onDelete:Function to be called when the user clicks the Delete button
-
 const Show = (props) => {
   return (
     <main className="appointment__card appointment__card--show">
